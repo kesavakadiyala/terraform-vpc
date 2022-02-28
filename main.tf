@@ -28,3 +28,38 @@ resource "aws_subnet" "private_subnet" {
     Environment      = var.ENV
   }
 }
+
+//Creating instance for Bastion
+resource "aws_instance" "bastion-instance" {
+  ami           = data.aws_ami.ami.id
+  instance_type = "t3.medium"
+  vpc_security_group_ids = [aws_security_group.allow-ssh-for-bastion.id]
+  subnet_id = aws_subnet.private_subnet.id
+  tags = {
+    Name = "bastion-instance"
+  }
+}
+
+resource "aws_security_group" "allow-ssh-for-bastion" {
+  name        = "Allow-ssh-for-bastion"
+  description = "Allow-ssh-for-bastion"
+  vpc_id = aws_vpc.main.id
+  ingress {
+    description = "TLS from VPC"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "Allow-ssh-for-bastion"
+  }
+}

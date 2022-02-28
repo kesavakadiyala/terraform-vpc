@@ -34,7 +34,7 @@ resource "aws_instance" "bastion-instance" {
   ami           = data.aws_ami.ami.id
   instance_type = "t3.medium"
   vpc_security_group_ids = [aws_security_group.allow-ssh-for-bastion.id]
-  subnet_id = aws_subnet.private_subnet[0].id
+  subnet_id = aws_subnet.public_subnet[0].id
   tags = {
     Name = "bastion-instance"
   }

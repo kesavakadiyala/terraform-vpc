@@ -29,6 +29,15 @@ resource "aws_subnet" "private_subnet" {
   }
 }
 
+resource "aws_route53_record" "backend-alb" {
+  count               = length(var.BACKEND_COMPONENTS)
+  name                = "${element(var.BACKEND_COMPONENTS, count.index)}-${var.ENV}"
+  type                = "CNAME"
+  zone_id             = var.HOSTED_ZONE_ID
+  ttl                 = "300"
+  records             = [aws_lb.backend-alb.dns_name]
+}
+
 //Creating instance for Bastion
 resource "aws_instance" "bastion-instance" {
   ami           = data.aws_ami.ami.id

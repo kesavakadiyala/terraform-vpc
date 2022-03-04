@@ -21,3 +21,7 @@ output "PRIVATE_CIDR" {
 output "PUBLIC_CIDR" {
   value = aws_subnet.private_subnet.*.cidr_block
 }
+
+output "HOSTED_ZONE_ID" {
+  value = var.HOSTED_ZONE_ID
+}

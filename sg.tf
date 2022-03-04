@@ -33,7 +33,7 @@ resource "aws_security_group" "allow-backend-alb" {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = [aws_subnet.private_subnet.*.cidr_block[0], aws_subnet.private_subnet.*.cidr_block[1]]
+    cidr_blocks = [aws_vpc.main.cidr_block]
   }
 
   egress {

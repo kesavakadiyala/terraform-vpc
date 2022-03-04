@@ -25,3 +25,15 @@ output "PUBLIC_CIDR" {
 output "HOSTED_ZONE_ID" {
   value = var.HOSTED_ZONE_ID
 }
+
+output "FRONTEND_ALB_ARN" {
+  value = aws_lb.frontend-alb.arn
+}
+
+output "BACKEND_ALB_ARN" {
+  value = aws_lb.backend-alb.arn
+}
+
+output "BACKEND_ALB_DNSNAME" {
+  value = aws_lb.backend-alb.dns_name
+}

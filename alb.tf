@@ -6,7 +6,6 @@ resource "aws_lb" "frontend-alb-dev" {
   subnets            = aws_subnet.public_subnet.*.id
   tags = {
     Name        = "frontend-alb-dev"
-    Environment = var.ENV
   }
 }
 
@@ -18,7 +17,6 @@ resource "aws_lb" "backend-alb-dev" {
   subnets            = aws_subnet.private_subnet.*.id
   tags = {
     Name        = "backend-alb-dev"
-    Environment = var.ENV
   }
 }
 
@@ -30,7 +28,6 @@ resource "aws_lb" "frontend-alb-prod" {
   subnets            = aws_subnet.public_subnet.*.id
   tags = {
     Name        = "frontend-alb-prod"
-    Environment = var.ENV
   }
 }
 
@@ -42,7 +39,6 @@ resource "aws_lb" "backend-alb-prod" {
   subnets            = aws_subnet.private_subnet.*.id
   tags = {
     Name        = "backend-alb-prod"
-    Environment = var.ENV
   }
 }
 

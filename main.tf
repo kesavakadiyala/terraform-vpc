@@ -29,24 +29,6 @@ resource "aws_subnet" "private_subnet" {
   }
 }
 
-resource "aws_route53_record" "backend-route53-dev" {
-  count               = length(var.BACKEND_COMPONENTS) == 5 && var.ENV == "dev" ? 5 : 0
-  name                = "${element(var.BACKEND_COMPONENTS, count.index)}-${var.ENV}"
-  type                = "CNAME"
-  zone_id             = var.HOSTED_ZONE_ID
-  ttl                 = "300"
-  records             = [aws_lb.backend-alb-dev.dns_name]
-}
-
-resource "aws_route53_record" "backend-route53-prod" {
-  count               = length(var.BACKEND_COMPONENTS) == 5 && var.ENV == "prod" ? 5 : 0
-  name                = "${element(var.BACKEND_COMPONENTS, count.index)}-${var.ENV}"
-  type                = "CNAME"
-  zone_id             = var.HOSTED_ZONE_ID
-  ttl                 = "300"
-  records             = [aws_lb.backend-alb-prod.dns_name]
-}
-
 //Creating instance for Bastion
 resource "aws_instance" "bastion-instance" {
   ami           = data.aws_ami.ami.id

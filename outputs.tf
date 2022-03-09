@@ -26,6 +26,14 @@ output "HOSTED_ZONE_ID" {
   value = var.HOSTED_ZONE_ID
 }
 
+output "BACKEND_ALB_DNS_NAME-DEV" {
+  value = aws_lb.backend-alb-dev.dns_name
+}
+
+output "BACKEND_ALB_DNS_NAME-PROD" {
+  value = aws_lb.backend-alb-prod.dns_name
+}
+
 output "FRONTEND_ALB_ARN_DEV" {
   value = aws_lb.frontend-alb-dev.arn
 }

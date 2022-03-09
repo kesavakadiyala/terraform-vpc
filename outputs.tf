@@ -26,10 +26,18 @@ output "HOSTED_ZONE_ID" {
   value = var.HOSTED_ZONE_ID
 }
 
-output "FRONTEND_ALB_ARN" {
-  value = aws_lb.frontend-alb.arn
+output "FRONTEND_ALB_ARN_DEV" {
+  value = aws_lb.frontend-alb-dev.arn
 }
 
-output "BACKEND_ALB_ARN" {
-  value = aws_lb.backend-alb.arn
+output "BACKEND_ALB_ARN_DEV" {
+  value = aws_lb.backend-alb-dev.arn
+}
+
+output "FRONTEND_ALB_ARN_PROD" {
+  value = aws_lb.frontend-alb-prod.arn
+}
+
+output "BACKEND_ALB_ARN_PROD" {
+  value = aws_lb.backend-alb-prod.arn
 }

@@ -30,7 +30,7 @@ resource "aws_subnet" "private_subnet" {
 }
 
 resource "aws_route53_record" "backend-route53-dev" {
-  count               = length(var.BACKEND_COMPONENTS) && var.ENV == "dev" ? 1 : 0
+  count               = length(var.BACKEND_COMPONENTS) == 5 && var.ENV == "dev" ? 5 : 0
   name                = "${element(var.BACKEND_COMPONENTS, count.index)}-${var.ENV}"
   type                = "CNAME"
   zone_id             = var.HOSTED_ZONE_ID
@@ -39,7 +39,7 @@ resource "aws_route53_record" "backend-route53-dev" {
 }
 
 resource "aws_route53_record" "backend-route53-prod" {
-  count               = length(var.BACKEND_COMPONENTS) && var.ENV == "prod" ? 1 : 0
+  count               = length(var.BACKEND_COMPONENTS) == 5 && var.ENV == "prod" ? 5 : 0
   name                = "${element(var.BACKEND_COMPONENTS, count.index)}-${var.ENV}"
   type                = "CNAME"
   zone_id             = var.HOSTED_ZONE_ID

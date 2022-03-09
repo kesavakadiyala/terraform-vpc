@@ -14,7 +14,6 @@ resource "aws_subnet" "public_subnet" {
   availability_zone  = element(data.aws_availability_zones.available.names, count.index)
   tags               = {
     Name             = "Public-Subnet${count.index+1}"
-    Environment      = var.ENV
   }
 }
 
@@ -25,7 +24,6 @@ resource "aws_subnet" "private_subnet" {
   availability_zone  = element(data.aws_availability_zones.available.names, count.index)
   tags               = {
     Name             = "Private-Subnet${count.index+1}"
-    Environment      = var.ENV
   }
 }
 

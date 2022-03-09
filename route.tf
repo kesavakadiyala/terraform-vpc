@@ -6,7 +6,6 @@ resource "aws_route_table" "public" {
   }
   tags              = {
     Name            = "public-route-table"
-    Environment     = var.ENV
   }
 }
 
@@ -25,7 +24,6 @@ resource "aws_route_table" "private" {
   }
   tags              = {
     Name            = "Private-route-table${count.index}"
-    Environment     = var.ENV
   }
 }
 

@@ -1,8 +1,7 @@
 resource "aws_internet_gateway" "igw" {
   vpc_id            = aws_vpc.main.id
   tags              = {
-    Name            = "InternetGateWay-${var.ENV}"
-    Environment     = var.ENV
+    Name            = "InternetGateWay"
   }
 }
 
@@ -17,6 +16,5 @@ resource "aws_nat_gateway" "ngw" {
   subnet_id         = element(aws_subnet.public_subnet.*.id, count.index)
   tags              = {
     Name            = "Nat-Gateway${count.index}"
-    Environment     = var.ENV
   }
 }

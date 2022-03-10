@@ -48,7 +48,7 @@ resource "aws_route53_record" "backend-route53-dev" {
   type                = "CNAME"
   zone_id             = var.HOSTED_ZONE_ID
   ttl                 = "300"
-  records             = aws_lb.backend-alb-dev.dns_name
+  records             = [aws_lb.backend-alb-dev.dns_name]
 }
 
 resource "aws_route53_record" "backend-route53-prod" {
@@ -57,5 +57,5 @@ resource "aws_route53_record" "backend-route53-prod" {
   type                = "CNAME"
   zone_id             = var.HOSTED_ZONE_ID
   ttl                 = "300"
-  records             = aws_lb.backend-alb-prod.dns_name
+  records             = [aws_lb.backend-alb-prod.dns_name]
 }
